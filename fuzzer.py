@@ -16,10 +16,10 @@ def parse_arguments():
                         help="Fuzzing pattern to fill buffer. Default is 'A'")
     parser.add_argument("-o", "--offset", type=int, default=50,
                         help="Offset used to build buffer. Default is 50")
-    parser.add_argument("-l", "--length", type=int, default=30,
-                        help="Size of the buffer (i.e. amount of attempts based on how many words are stored). Default is 30")
-    parser.add_argument("-t", "--time_sleep", type=int, default=1,
-                        help="Sleep time (in seconds) to use between each request. Default is 1")
+    parser.add_argument("-l", "--length", type=int, default=20,
+                        help="Size of the buffer (i.e. amount of attempts based on how many words are stored). Default is 20")
+    parser.add_argument("-t", "--time_sleep", type=int, default=2,
+                        help="Sleep time (in seconds) to use between each request. Default is 2")
     args = parser.parse_args()
     return args
 
@@ -34,6 +34,7 @@ def create_buffer(ch: str, length: int, offset: int) -> list[str]:
 
 def fuzz(buffer: list[str], host: str, username: str, port: int = 110, sleep_time: int = 1) -> None:
     for word in buffer:
+        print(f"Fuzzing PASSWORD with {len(word)} byte(s)")
         tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         tcp_socket.connect((host, port))
         tcp_socket.recv(1024)
