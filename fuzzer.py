@@ -35,7 +35,6 @@ def create_buffer(ch: str, length: int, offset: int) -> list[str]:
 
 def fuzz(buffer: list[str], host: str, username: str, port: int = 110, sleep_time: int = 1) -> None:
     for word in buffer:
-        print(f"Fuzzind PASSWORD with {len(word)} bytes")
         tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         tcp_socket.connect((host, port))
         tcp_socket.recv(1024)
