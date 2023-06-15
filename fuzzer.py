@@ -50,7 +50,6 @@ def fuzz(buffer: list[str], host: str, username: str, port: int = 110, sleep_tim
 
 def main():
     args = parse_arguments()
-    print("\nOpaaaa\n")
     buffer = create_buffer(args.fuzz_pattern, args.length, args.offset)
     fuzz(buffer, args.host, args.username, args.time_sleep)
 
