@@ -27,7 +27,6 @@ def parse_arguments():
 def create_buffer(ch: str, length: int, offset: int) -> list[str]:
     buffer = [ch]
     while len(buffer) <= length:
-        print(buffer)
         buffer.append(ch * offset)
         offset += offset
     return buffer
